@@ -5,12 +5,9 @@ import Card from "reactstrap/es/Card";
 import CardImgOverlay from "reactstrap/es/CardImgOverlay";
 
 class Menu extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
-        console.log(this.props.dishes);
+        if (this.props.dishes != null) {
             const menu = this.props.dishes.map((dish) => {
                 return (
                     <div key={dish.id} className="col-12 col-md-5 m-1">
@@ -24,7 +21,6 @@ class Menu extends Component {
                 );
             });
 
-
         return (
                 <div className="container">
                     <div className="row">
@@ -32,6 +28,10 @@ class Menu extends Component {
                     </div>
                 </div>
             );
+        } else
+            return (
+                <div></div>
+            )
         }
 }
 
