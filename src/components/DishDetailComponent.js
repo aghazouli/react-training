@@ -4,9 +4,9 @@ import CardText from "reactstrap/es/CardText";
 import Card from "reactstrap/es/Card";
 import CardTitle from "reactstrap/es/CardTitle";
 
-class DishDetail extends Component {
 
-    renderDish(dish) {
+
+    function RenderDish({dish}) {
         if (dish != null) {
             return(
                 <Card>
@@ -22,8 +22,8 @@ class DishDetail extends Component {
             );
     }
 
-    render() {
-        if (this.props.isLoading) {
+    const DishDetail = (props) => {
+        if (props.isLoading) {
             return(
                 <div className="container">
                     <div className="row">
@@ -31,7 +31,7 @@ class DishDetail extends Component {
                 </div>
             );
         }
-        else if (this.props.errMess) {
+        else if (props.errMess) {
             return(
                 <div className="container">
                     <div className="row">
@@ -40,12 +40,11 @@ class DishDetail extends Component {
                 </div>
             );
         }
-        else if (this.props.dish != null) {
-            console.log(this.props.dish);
+        else if (props.dish != null) {
             return (
                 <div className="container">
                     <div className="row">
-                        {this.renderDish(this.props.dish)}
+                        <RenderDish dish = {props.dish}/>
                     </div>
                 </div>
             );
@@ -55,7 +54,7 @@ class DishDetail extends Component {
                 <div></div>
             );
 
-    }
+
 }
 
 export default DishDetail;
