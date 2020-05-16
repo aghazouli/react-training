@@ -3,6 +3,9 @@ import CardBody from "reactstrap/es/CardBody";
 import CardText from "reactstrap/es/CardText";
 import Card from "reactstrap/es/Card";
 import CardTitle from "reactstrap/es/CardTitle";
+import Breadcrumb from "reactstrap/es/Breadcrumb";
+import BreadcrumbItem from "reactstrap/es/BreadcrumbItem";
+import { Link } from 'react-router-dom';
 
 
 
@@ -44,7 +47,19 @@ import CardTitle from "reactstrap/es/CardTitle";
             return (
                 <div className="container">
                     <div className="row">
-                        <RenderDish dish = {props.dish}/>
+                        <Breadcrumb>
+                            <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                            <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+                        </Breadcrumb>
+                        <div className="col-12">
+                            <h3>{props.dish.name}</h3>
+                            <hr />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-12 col-md-5 m-1">
+                            <RenderDish dish={props.dish} />
+                        </div>
                     </div>
                 </div>
             );
