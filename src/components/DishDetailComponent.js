@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import CardBody from "reactstrap/es/CardBody";
 import CardText from "reactstrap/es/CardText";
 import Card from "reactstrap/es/Card";

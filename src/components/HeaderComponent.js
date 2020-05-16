@@ -1,5 +1,5 @@
 import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron } from 'reactstrap';
-import {BrowserRouter, NavLink} from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import React, { Component }  from 'react';
 
 class HeaderComponent extends Component {
