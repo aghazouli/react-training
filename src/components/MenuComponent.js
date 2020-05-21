@@ -6,6 +6,7 @@ import CardImgOverlay from "reactstrap/es/CardImgOverlay";
 import { Link } from 'react-router-dom';
 import Breadcrumb from "reactstrap/es/Breadcrumb";
 import BreadcrumbItem from "reactstrap/es/BreadcrumbItem";
+import {Loading} from "./LoadingComponent";
 
     function RenderMenuItem({dish, onClick}) {
        return (
@@ -23,7 +24,28 @@ import BreadcrumbItem from "reactstrap/es/BreadcrumbItem";
     const Menu = (props) => {
 
         if (props.dishes != null) {
-            const menu = props.dishes.map((dish) => {
+            const menu = props.dishes.dishes.map((dish) => {
+                if (props.dishes.isLoading) {
+                    return(
+                        <div className="container">
+                            <div className="row">
+                                <Loading />
+                            </div>
+                        </div>
+                    );
+                }
+                else if (props.dishes.errMess) {
+                    return(
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-12">
+                                    <h4>{props.dishes.errMess}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    );
+                }
+                else
                 return (
                     <div key={dish.id} className="col-12 col-md-5 m-1">
                         <RenderMenuItem dish={dish} />

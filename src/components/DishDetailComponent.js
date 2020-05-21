@@ -14,6 +14,7 @@ import Button from "reactstrap/es/Button";
 import Modal from "reactstrap/es/Modal";
 import ModalHeader from "reactstrap/es/ModalHeader";
 import ModalBody from "reactstrap/es/ModalBody";
+import {Loading} from "./LoadingComponent";
 
 
 const required = (val) => val && val.length;
@@ -67,6 +68,7 @@ function RenderComments({comments, dishId, addComment}) {
             return(
                 <div className="container">
                     <div className="row">
+                        <Loading />
                     </div>
                 </div>
             );
