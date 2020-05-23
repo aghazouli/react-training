@@ -15,6 +15,7 @@ import Modal from "reactstrap/es/Modal";
 import ModalHeader from "reactstrap/es/ModalHeader";
 import ModalBody from "reactstrap/es/ModalBody";
 import {Loading} from "./LoadingComponent";
+import {baseUrl} from "../shared/baseUrl";
 
 
 const required = (val) => val && val.length;
@@ -37,7 +38,7 @@ const minLength = (len) => (val) => val && (val.length >= len);
             );
     }
 
-function RenderComments({comments, dishId, addComment}) {
+function RenderComments({comments, dishId, postComment}) {
     if (comments != null){
         let commentList = comments.map((comment) => {
                 return (
@@ -53,7 +54,7 @@ function RenderComments({comments, dishId, addComment}) {
                 <ul className="list-unstyled">
                     {commentList}
                 </ul>
-                <CommentForm dishId={dishId} addComment={addComment}/>
+                <CommentForm dishId={dishId} postComment={postComment}/>
             </React.Fragment>
         );
     }
@@ -99,8 +100,8 @@ function RenderComments({comments, dishId, addComment}) {
                     <div className="row">
                         <div className="col-12 col-md-5 m-1">
                             <RenderDish dish={props.dish} />
-                            <img width="60%" src={props.dish.image} alt={props.dish.name} />
-                            <RenderComments comments={props.comments} dishId={props.dish.id} addComment={props.addComment}/>
+                            <img width="60%" src={baseUrl + props.dish.image} alt={props.dish.name} />
+                            <RenderComments comments={props.comments} dishId={props.dish.id} postComment={props.postComment}/>
                         </div>
                     </div>
                 </div>
@@ -135,7 +136,7 @@ class CommentForm extends Component {
         console.log(values)
         this.toggleModal();
         console.log(this.props)
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
     }
 
     render() {
