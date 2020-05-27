@@ -16,7 +16,7 @@ import ModalHeader from "reactstrap/es/ModalHeader";
 import ModalBody from "reactstrap/es/ModalBody";
 import {Loading} from "./LoadingComponent";
 import {baseUrl} from "../shared/baseUrl";
-
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -25,12 +25,18 @@ const minLength = (len) => (val) => val && (val.length >= len);
     function RenderDish({dish}) {
         if (dish != null) {
             return(
+                <FadeTransform
+                    in
+                    transformProps={{
+                        exitTransform: 'scale(0.5) translateY(-50%)'
+                    }}>
                 <Card>
                     <CardBody>
                         <CardTitle>{dish.name}</CardTitle>
                         <CardText>{dish.description}</CardText>
                     </CardBody>
                 </Card>
+                </FadeTransform>
             );
         } else
             return(
@@ -42,17 +48,21 @@ function RenderComments({comments, dishId, postComment}) {
     if (comments != null){
         let commentList = comments.map((comment) => {
                 return (
+                <Fade in>
                         <li>
                             <p>{comment.comment}</p>
                             <p>-- {comment.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
                         </li>
+                </Fade>
                 );
             })
         return(
             <React.Fragment>
                 <h3>Comments</h3>
                 <ul className="list-unstyled">
+                    <Stagger in>
                     {commentList}
+                    </Stagger>
                 </ul>
                 <CommentForm dishId={dishId} postComment={postComment}/>
             </React.Fragment>
@@ -63,7 +73,6 @@ function RenderComments({comments, dishId, postComment}) {
             <div></div>
         );
 }
-
     const DishDetail = (props) => {
         if (props.isLoading) {
             return(
