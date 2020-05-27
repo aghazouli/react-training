@@ -30,7 +30,8 @@ const mapDispatchToProps = dispatch => ({
     fetchComments: () => { dispatch(fetchComments())},
     fetchPromos: () => dispatch(fetchPromos()),
     postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
-    fetchLeaders: () => {dispatch(fetchLeaders())}
+    fetchLeaders: () => {dispatch(fetchLeaders())},
+    postFeedBack: (firstname, lastname, telnum, email, agree, contactType, message) => dispatch(postComment(firstname, lastname, telnum, email, agree, contactType, message))
 
 });
 
@@ -90,7 +91,7 @@ class Main extends Component {
                         <Route exact path='/menu' component={() => <Menu dishes={this.props.dishes} />} />
                         <Route exact path='/aboutus' component={() => <About leaders={this.props.leaders} />} />
                         <Route path='/menu/:dishId' component={DishWithId} />
-                        <Route exact path='/contactus' component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />} />
+                        <Route exact path='/contactus' component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} postFeedback = {this.props.postFeedBack}/>} />} />
                         <Redirect to="/home" />
                     </Switch>
                     </CSSTransition>
